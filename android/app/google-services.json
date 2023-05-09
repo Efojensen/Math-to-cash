@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1071342117353",
+    "project_id": "math-to-cash",
+    "storage_bucket": "math-to-cash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071342117353:android:a359f92e023bd280d5ab78",
+        "android_client_info": {
+          "package_name": "com.example.math_to_cash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071342117353-08bv4lk58k0630b806nbnnf0l697h4bg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9xuLk8kdKrcfv8IC_CgDiV8FKevXRDV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071342117353-08bv4lk58k0630b806nbnnf0l697h4bg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
