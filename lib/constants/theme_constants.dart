@@ -5,7 +5,18 @@ const color_accent = Color.fromARGB(255, 128, 126, 126);
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  primarySwatch: Colors.lightGreen
+  primarySwatch: Colors.lightGreen,
+  // primarySwatch: const MaterialColor(0xFF235433, <int, Color>{
+  //     }),
+      scaffoldBackgroundColor: Colors.white,
+      // brightness: Brightness.light,
+      textTheme: const TextTheme(),
+      hoverColor: Colors.indigo,
+      fontFamily: 'Wallpoet',
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.white70,
+        hoverColor: Colors.indigo,
+        focusColor: Colors.indigo[700],)
 );
 
 ThemeData darkTheme = ThemeData(

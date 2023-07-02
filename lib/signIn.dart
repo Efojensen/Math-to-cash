@@ -1,17 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:math_to_cash/constants/theme_constants.dart';
+// import 'package:math_to_cash/constants/theme_constants.dart';
+import 'package:math_to_cash/homescreen.dart';
 import 'package:math_to_cash/utilities/helpers.dart';
-import 'dart:developer' as devtools show log;
+// import 'dart:developer' as devtools show log;
 
 import 'firebase_options.dart';
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-    theme: lightTheme,
-    darkTheme: darkTheme,
+    theme: ThemeData.dark(),
+    // theme: lightTheme,
+    // darkTheme: darkTheme,
     home: const SignIn()
   ))
   ;
@@ -90,7 +92,6 @@ class _SignInState extends State<SignIn> {
                 await Firebase.initializeApp(
                   options: DefaultFirebaseOptions.currentPlatform,
                 );
-
                 final email = _email.text;
                 final password = _password.text;
                 final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -98,8 +99,24 @@ class _SignInState extends State<SignIn> {
                   password: password
                 );
                 print(userCredential);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: ((context) => HomeScreen())
+                  )
+                );
               },
-              child: const Text("Sign in"))
+              child: const Text("Sign in")),
+              verticalSpace(20),
+              TextButton(
+                onPressed: (){
+                  Navigator.pop(
+                    context);
+                },
+                child: const Text("New here? Sign up!")),
+                verticalSpace(18),
+                const Text("If you're here from the verify email page, you'll have to sign in.",
+                style: TextStyle(color: Colors.grey, fontSize: 12, fontFamily: 'Wallpoet')
+                )
         ]
       )
       )

@@ -1,19 +1,24 @@
 // ignore_for_file: camel_case_types
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:math_to_cash/constants/theme_constants.dart';
 import 'package:math_to_cash/signIn.dart';
 import 'package:math_to_cash/utilities/helpers.dart';
+import 'package:math_to_cash/verify_email.dart';
+import 'constants/theme_constants.dart';
 import 'constants/theme_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'dart:developer' as devtools show log;
+
 
 ThemeManager _themeManager = ThemeManager();
-void main(){
+void main()async{
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    // theme: ThemeData.light(),
     theme: lightTheme,
     darkTheme: darkTheme,
     themeMode: _themeManager.themeMode,
@@ -30,6 +35,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _myAppState extends State<MyApp> {
+
+  late final TextEditingController _email;
+  late final TextEditingController _password;
 
   @override
   void initState() {
@@ -54,9 +62,6 @@ class _myAppState extends State<MyApp> {
       });
     }
   }
-
-  late final TextEditingController _email;
-  late final TextEditingController _password;
 
   @override
   Widget build(BuildContext context) {
@@ -109,17 +114,15 @@ class _myAppState extends State<MyApp> {
             verticalSpace(20),
             ElevatedButton(
               onPressed: ()async{
-
-                await Firebase.initializeApp(
-                  options: DefaultFirebaseOptions.currentPlatform,
-                );
-
                 final email = _email.text;
                 final password = _password.text;
                 final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                   email: email,
                   password: password,
                 );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const VerifyEmail()));
                 print(userCredential);
               },
               child: const Text("Sign up")),
@@ -127,7 +130,7 @@ class _myAppState extends State<MyApp> {
               TextButton(
                 onPressed: (){
                   Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => const SignIn()));
+                  context, MaterialPageRoute(builder: (context) => const SignIn()));
                 },
                 child: const Text("Already a member? Sign in"))
           ]
